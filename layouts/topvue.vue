@@ -30,14 +30,16 @@
       app
       flat
       color="white"
+      elevation="0"
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>
         <span>読売センター砂町</span>
       </v-toolbar-title>
     </v-app-bar>
+
     <v-main>
-      <v-container fluid>
+      <v-container>
         <nuxt />
       </v-container>
     </v-main>
@@ -67,28 +69,20 @@ export default {
   },
   data: () => ({
     dialog: null,
-    drawer: false,
+    drawer: null,
     items: [
       { icon: "home", text: "ホーム", link: "/" },
       { icon: "edit", text: "ご契約更新", link: "/form" },
-      { icon: "mdi-motorbike", text: "配達の一時停止", link: "/pause" },
+      { icon: "edit", text: "配達の一時停止", link: "/pause" },
       {
-        icon: "mdi-package-variant",
+        icon: "edit",
         text: "古新聞 段ボールの回収",
         link: "/recycle",
       },
-      {
-        icon: "mdi-credit-card-check-outline",
-        text: "お支払い方法の変更",
-        link: "/payment",
-      },
+      { icon: "edit", text: "お支払い方法の変更", link: "/payment" },
       { icon: "money", text: "特別クーポン", link: "/coupon" },
-      { icon: "mdi-cart-outline", text: "おすすめ通販", link: "/ycsec" },
-      {
-        icon: "mdi-calendar-month-outline",
-        text: "お試し購読",
-        link: "/trial",
-      },
+      { icon: "money", text: "おすすめ通販", link: "/ycsec" },
+      { icon: "edit", text: "お試し購読", link: "/trial" },
     ],
   }),
 };

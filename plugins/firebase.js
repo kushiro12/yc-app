@@ -1,17 +1,26 @@
 import firebase from "firebase"
+import 'firebase/auth'
+
 const config = {
     projectId: process.env.FIREBASE_PROJECT_ID
 }
 
-   if (!firebase.apps.length) {
+if (!firebase.apps.length) {
     firebase.initializeApp({
-        apiKey: "AIzaSyAxAADU0IDk2kNG7mK8h4Ovu5PH3nVrXcw",
-        authDomain: "yc-app-a77fd.firebaseapp.com",
-        databaseURL: "https://yc-app-a77fd.firebaseio.com",
-        projectId: "yc-app-a77fd",
-        storageBucket: "yc-app-a77fd.appspot.com",
-        messagingSenderId: "948834959529",
-        appId: "1:948834959529:web:ee78a332437926960329b8",
-        measurementId: "G-9JM9Z33RM9"
-    })}
-    export default firebase
+        apiKey: "AIzaSyC1GkZpnhqx9O9NWCxlDdrflpeTNiY7Htk",
+        authDomain: "ycs-prj.firebaseapp.com",
+        databaseURL: "https://ycs-prj.firebaseio.com",
+        projectId: "ycs-prj",
+        storageBucket: "ycs-prj.appspot.com",
+        messagingSenderId: "984893195420",
+        appId: "1:984893195420:web:441dc3236face15ada1959",
+        measurementId: "G-SEMJ94GS9E"
+    })
+}
+export const authProviders = {
+
+    Email: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+}
+
+export const auth = firebase.auth()
+export default firebase

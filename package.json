@@ -7,17 +7,27 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "export": "nuxt export",
-    "serve": "nuxt serve"
+    "serve": "nuxt serve",
+    "generate": "nuxt generate"
   },
   "dependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
     "axios": "^0.19.2",
+    "cookieparser": "^0.1.0",
     "firebase": "^7.15.5",
+    "firebaseui": "^4.6.1",
+    "js-cookie": "^2.2.1",
+    "moment": "^2.29.0",
+    "node-sass": "^4.14.1",
     "nuxt": "^2.13.0",
-
+    "vee-validate": "^3.3.7",
+    "vue-js-modal": "^2.0.0-rc.6",
+    "vue-slide-bar": "^1.2.0",
     "vuexfire": "^3.2.3"
   },
   "devDependencies": {
-    "@nuxtjs/vuetify": "^1.11.2"
+    "@mdi/font": "^5.6.55",
+    "@nuxtjs/vuetify": "^1.11.2",
+    "sass-loader": "^7.1.0"
   }
 }

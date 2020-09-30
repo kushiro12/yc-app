@@ -1,57 +1,129 @@
 <template>
-<v-app>
- <ul>
-      <li v-for="user in users" :key="user.id">
-        <!-- {{ todo }} -->
-    {{ user.name }} {{user.address}} {{user.email}} {{user.period}} {{user.tell}}{{user.type}}  
-      </li>
-    </ul>
-</v-app>
+  <v-app>
+    <v-container>
+      <div>
+        <v-btn
+          absolute
+          top
+          right
+          large
+          color="error"
+          small
+          class="mr-2"
+          @click="logOut"
+          >ログアウト</v-btn
+        >
+      </div>
+    </v-container>
+    <v-main>
+      <v-tabs>
+        <!-- <v-tab> -->
+        <!-- <v-icon left> mdi-credit-card-check-outline </v-icon>
+        新規契約
+      </v-tab> -->
+        <v-tab>
+          <v-icon left>mdi-clock-time-four-outline</v-icon>
+          使い方
+        </v-tab>
+        <v-tab>
+          <v-icon left>mdi-clock-time-four-outline</v-icon>
+          新規契約
+        </v-tab>
+        <v-tab>
+          <v-icon left>mdi-clock-time-four-outline</v-icon>
+          継続契約
+        </v-tab>
+        <v-tab>
+          <v-icon left> mdi-credit-card-check-outline </v-icon>
+          配達の一時停止
+        </v-tab>
+        <v-tab>
+          <v-icon left>mdi-clock-time-four-outline</v-icon>
+          資源回収
+        </v-tab>
+        <v-tab>
+          <v-icon left>mdi-clock-time-four-outline</v-icon>
+          支払い方法の変更
+        </v-tab>
+        <v-tab>
+          <v-icon left>mdi-clock-time-four-outline</v-icon>
+          集金希望日
+        </v-tab>
+        <v-tab>
+          <v-icon left>mdi-clock-time-four-outline</v-icon>
+          お試し購読
+        </v-tab>
+        <v-tab-item>
+          <v-card flat>
+            <div><p>！これから作る</p></div>
+          </v-card>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card flat>
+            <NewContruct />
+          </v-card>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card flat>
+            <Form />
+          </v-card>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <Pause />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card flat>
+            <Recycle />
+          </v-card>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <PayMent />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <Desired />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+        <v-tab-item>
+          <v-card flat>
+            <v-card-text>
+              <Trial />
+            </v-card-text>
+          </v-card>
+        </v-tab-item>
+      </v-tabs>
+    </v-main>
+  </v-app>
 </template>
 
-<<script>
- export default {
-    data: function() {
-      return {
-        name: '',
-        done: false
-      }
+<script>
+import firebase from "@/plugins/firebase";
+import moment from "moment";
+import Form from "~/components/Form";
+import Recycle from "~/components/Recycle";
+import PayMent from "~/components/PayMent";
+import Pause from "~/components/Pause";
+import Desired from "~/components/Desired";
+import NewContruct from "~/components/NewContruct";
+import Trial from "~/components/Trial";
+export default {
+  middleware: "authenticated",
+  layout: "admin",
+  methods: {
+    logOut() {
+      firebase.auth().signOut();
+      this.$router.push("/login");
     },
-    created: function() {
-      this.$store.dispatch('users/init')
-    },
-    methods: {
-      add() {
-        this.$store.dispatch('users/add', this.name)
-        this.name = ''
-      }
-    },
-    computed: {
-      users() {
-        return this.$store.state.users.users
-      }
-    }
-  }
-  
-      
-      /*users: [
-        {
-          name: '鈴木',
-          tel: '090-0000-1111',
-          email: 'sample1@mail.com',
-          address: '東京都渋谷区',
-          period:"24ヶ月",
-          type:"読売セット",
-
-        },
-        {
-           name: '山田',
-          tel: '090-0000-1111',
-          email: 'sample1@mail.com',
-          address: '東京都渋谷区',
-           period:"24ヶ月",
-          type:"読売朝刊",
-        }
-      ]*/
-  
+  },
+};
 </script>

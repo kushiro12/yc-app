@@ -1,25 +1,25 @@
 import firebase from '~/plugins/firebase'
 import { firestoreAction } from 'vuexfire'
 const db = firebase.firestore()
-const usersRef = db.collection('users')
+const newcontructsRef = db.collection('newcontructs')
 
 export const strict = false
 
 export const state = () => ({
-    users: [],
+    newcontructs: [],
 
 })
 
 
 export const actions = {
     init: firestoreAction(({ bindFirestoreRef }) => {
-        bindFirestoreRef('users', usersRef)
+        bindFirestoreRef('newcontructs', newcontructsRef)
     }),
 
 
     add: firestoreAction((context, { name, address, address2, email, tell, precent, sports, kodomo, japannews, papertype1, papertype2, year, month, school, payment }) => {
         if (name.trim())
-            usersRef.add
+            newcontructsRef.add
                 ({
                     name: name,
                     address: address,
@@ -44,21 +44,21 @@ export const actions = {
     }),
 
     /*get: firestoreAction((context, id) => {
-        usersRef.doc(id).get(id)
+        newcontructsRef.doc(id).get(id)
     }),*/
-    updateUser: firestoreAction((context, user) => {
-        usersRef.doc(user.id).update(
+    updatenewcontruct: firestoreAction((context, newcontruct) => {
+        newcontructsRef.doc(newcontruct.id).update(
         )
     }),
-    remove: firestoreAction((context, user) => {
-        usersRef.doc(user.id).delete()
+    remove: firestoreAction((context, newcontruct) => {
+        newcontructsRef.doc(newcontruct.id).delete()
     }),
 
-    toggle: firestoreAction((context, user) => {
-        usersRef.doc(user.id).update(
+    toggle: firestoreAction((context, newcontruct) => {
+        newcontructsRef.doc(newcontruct.id).update(
             {
 
-                done: !user.done
+                done: !newcontruct.done
             }
         )
 
@@ -70,28 +70,17 @@ export const actions = {
 
 
 
-export const getters = {
-    orderdUsers: state => {
-        return _.sortBy(state.users, 'created')
-            .reverse()
-    }
 
-}
+
 export const mutations = {
-    addUser(state, paylaod) {
-        state.users.push(paylaod.user)
+    addnewcontruct(state, paylaod) {
+        state.newcontructs.push(paylaod.newcontruct)
     },
-    // updateUser(state, paylaod) {
-    //     state.users.forEach((user, index) => {
-    //         if (user.id === paylaod.user.id) {
-    //             state.users.splice(index, 1, paylaod.user)
-    //         }
-    //     })
-    // },
-    removeUser(state, paylaod) {
-        state.users.forEach((user, index) => {
-            if (user.id === paylaod.user.id) {
-                state.users.splice(index, 1)
+
+    removenewcontruct(state, paylaod) {
+        state.newcontructs.forEach((newcontruct, index) => {
+            if (newcontruct.id === paylaod.newcontruct.id) {
+                state.newcontructs.splice(index, 1)
             }
         })
     }

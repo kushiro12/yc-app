@@ -1,229 +1,115 @@
 <template>
-
-<v-app>
-<div class="box17">
-
-    <p>いつも読売新聞をご愛読いただき、誠にありがとうございます。
-昨今の状況を鑑み、
-今後は訪問契約をハガキ・WEB申込へ変更させていただくことに致しました。
-お客様にはご不便をおかけ致しますが、何卒ご理解・ご協力のほどお願い申し上げます。</p>
-
-
-</div>
- <h3 class="title1">ご契約更新フォーム</h3>
-<div class="form">
-  
-    <v-card>
+  <v-app fluid>
     <v-container>
-       <v-col cols="12">
-          <v-text-field
-       class="name"
-            label="お名前(必須)"
-            placeholder="読売　太郎"
-            v-model="name1"
-          ></v-text-field>
-        </v-col>
-
-        <v-col cols="12">
-          <v-text-field
-           class="address"
-            label="ご住所(必須)"
-            placeholder="江東区〇〇"
-            v-model="name2"
-            
-          ></v-text-field>
-</v-col>
-
-        <v-col cols="12">
-          <v-text-field
-             class="address2"
-            label="マンション名、部屋番号など(必須)"
-            placeholder="〇〇マンション 111"
-           v-model="name3"
-          ></v-text-field>
-        </v-col>
-
-        <v-col cols="12">
-          <v-text-field
-              class="name"
-            label="電話番号(必須)"
-            placeholder="03-1234-5678"
-            v-model="name4"
-          ></v-text-field>
-        </v-col>
-  
-        <v-col cols="12">
-          <v-text-field
-            class="email"
-            label="メールアドレス(必須)"
-            placeholder="your@email"
-            v-model="email"
-          ></v-text-field>
-        </v-col>
+      <div class="bg"></div>
+      <v-img dark :src="imagetop" width="100%">
+        <div class="logo">
+          <img src="~/assets/images/yclogo1.png" height="50px" />
+        </div>
+      </v-img>
     </v-container>
-    
-    <br>
-    
-    <PaperType/> 
-      <Start/>
+    <v-card>
+      <v-container id="google-maps" fluid tag="section">
+        <v-row justify="end">
+          <v-col lg="6" md="6" sm="6" xs="6" align="center">
+            <v-card-text class="px-0 pb-0">
+              <v-sheet title="Satellite Map" class="px-5 py-5">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.7171351439147!2d139.82623681525882!3d35.68396638019371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601888ee1aa281b5%3A0x457b4e2dc404545f!2z44CSMTM2LTAwNzMg5p2x5Lqs6YO95rGf5p2x5Yy65YyX56CC77yT5LiB55uu77yU4oiS77yT77yS!5e0!3m2!1sja!2sjp!4v1601017074562!5m2!1sja!2sjp&z=16"
+                  height="200"
+                  frameborder="0"
+                  style="border: 0"
+                  allowfullscreen
+                />
+              </v-sheet>
+            </v-card-text>
+          </v-col>
 
-    <h3 class="title2">特典プレゼント</h3>
-<table>
-  
- <tr>
-    <td>24ヶ月</td>
-    <td>10点まで</td>
- </tr>
-  <tr>
-    <td>12ヶ月</td>
-    <td>8点まで</td>
- </tr>
-  <tr>
-    <td>8ヶ月</td>
-    <td>4点まで</td>
- </tr>
-  <tr>
-    <td>4ヶ月</td>
-    <td>2点まで</td>
- </tr>
+          <v-col lg="6" md="6" sm="6" xs="6" align-self="center">
+            <v-layout justify-center>
+              <v-flex>
+                <div class="address text-center">
+                  <h3>読売センター砂町</h3>
+                  <h4>店舗所在地</h4>
 
-</table>  
-
-
-  <br>
- 
- <CustmerPresent/>
-
-          
-
-
-  <Peyment/>
-
-<Contact/>
+                  <p>
+                    <v-icon small class="icon">home</v-icon
+                    >東京都江東区北砂3-4-32
+                  </p>
+                  <p id="tel">
+                    <v-icon small class="icon">mdi-phone</v-icon>03-3644-2921
+                  </p>
+                  <p><v-icon small class="icon">mdi-fax</v-icon>03-3644-2922</p>
+                  <p>
+                    <v-icon small class="icon">mdi-email</v-icon
+                    >zzzbubuzzz@gmail.com
+                  </p>
+                </div>
+              </v-flex>
+            </v-layout>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-card>
- <v-form v-on:submit.prevent="add">
-     <div class="text-right" >
-    <v-btn color="primary"  @click="add">送信</v-btn>
-      </div>
-  </v-form>
- 
-</div>
+
+    <IndexMenu />
   </v-app>
-
 </template>
-
 <script>
-import Vuetify from 'vuetify/lib'
-
+import IndexMenu from "~/components/IndexMenu";
 
 export default {
-    
-    data: function(){
-        return{
-            name:'',
-            email:'',
-        }
-    },
- created: function() {
-      this.$store.dispatch('users/init')
-    },
+  data() {
+    return {
+      title: "タイトルタグのテストページ",
 
-    methods: {
-        add(){
-            this.$store.dispatch('users/add', this.name)
-              this.name = ""
-    
-        }
-    },
-    computed:{
-        users(){
-            return this.$store.state.users.users
-        }
-    }
-   
-}
- 
+      items: [
+        {
+          color: "warning",
+          link: "/coupon",
+          slide: "毎月お得な朝一開催中！",
+        },
+        {
+          color: "pink darken-2",
+          link: "/trial",
+          slide: "読売中高生新聞 お試し無料！",
+        },
+      ],
+      imagetop: require("~/assets/images/topvue.png"),
+    };
+  },
+};
 </script>
 
+
 <style>
-.radio {
-  margin: 20px;
-   width: 100%;
+.address {
+  justify-content: center;
 }
-.title1{
-  background: linear-gradient(#6dbff5,#2887e6);
-  color: #eee;
-  text-align: center;
-  margin-top: 10%;
-  
+.icon {
+  position: relative;
+
+  bottom: 1px;
+  right: 3px;
 }
-.title2{
-  background: linear-gradient(#6dbff5,#2887e6);
-  color: #eee;
-  text-align: center;
-  
+.gmap {
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 100%;
+  padding-left: 100%;
+  position: relative;
+  margin: auto;
 }
-
-
-table{
-  width: 100%;
-  border-collapse:separate;
-  border-spacing: 0;
-  margin-bottom: 30px;
-
+.gmap iframe {
+  position: absolute;
+  left: 30px;
+  top: 50px;
+  bottom: 0;
 }
-
-.box17{
-    margin:2em 0;
-    position: relative;
-    padding: 0.5em 1.5em;
-    border-top: solid 2px #3d97f0;
-    border-bottom: solid 2px #3d97f0;
+.topbtn {
+  position: relative;
 }
-.box17:before, .box17:after{
-    content: '';
-    position: absolute;
-    top: -10px;
-    width: 2px;
-    height: -webkit-calc(100% + 20px);
-    height: calc(100% + 20px);
-    background-color: #3d97f0;
-}
-.box17:before {left: 10px;}
-.box17:after {right: 10px;}
-.box17 p {
-    margin: 0; 
-    padding: 0;
-}
-
-
-.text-right {
-margin: 30px;
-}
-
-table th{
-  text-align: center;
-  color:white;
-  background: linear-gradient(#829ebc,#225588);
-  border-left: 1px solid #3c6690;
-  border-top: 1px solid #3c6690;
-  border-bottom: 1px solid #3c6690;
-  
-  width: 25%;
-  padding: 10px 0;
-}
-
-table td{
-  text-align: center;
-  border-left: 1px solid #a8b7c5;
-
-  border-bottom: 1px solid #a8b7c5;
-  border-top:none;
- 
-  width: 50%;
-  padding: 10px 0;
-}
-
-
-
 </style>
+
+
+
