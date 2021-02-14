@@ -1,35 +1,49 @@
 <template>
   <v-app>
     <div>
+      <v-card color="red" dark>
+        <v-card-title>
+          新型コロナウイルスの影響で２月の読売日曜朝市は開催中止となりました
+        </v-card-title>
+      </v-card>
       <div class="box17">
-        <h3>特別クーポン</h3>
+        <h3>読売日曜朝市</h3>
+        <h4>毎月第三日曜日に開催中！</h4>
         <p>
-          読売センター砂町主催の読売日曜朝市が毎月北砂２丁目の志宣神社にて行われます。 こちらで使用できる特別クーポンです。当日会場にて読売新聞ブースにて画面をスタッフにご提示ください。
-          <strong>３００円</strong>分の引換券と交換致します。
+          開催場所 東京都江東区北砂2-1-37 志演尊空神社（しのぶそんくうじんじゃ）
+        </p>
+        <p>日時 毎月第三日曜日 午前７時～</p>
+        <p>
+          読売日曜朝市に関するお問い合わせは（出品品目 出店依頼等）
+          読売センター砂町 鍋谷 右田まで
         </p>
       </div>
-      <v-container>
-        <div class="logo-coupon">
-          <v-layout justify-center>
-            <v-flex xs10 md8>
-              <img src="~/static/images/morning.jpg" />
-            </v-flex>
-          </v-layout>
-        </div>
-      </v-container>
+      <v-row>
+        <v-col v-for="n in 9" :key="n" class="d-flex child-flex" cols="4">
+          <v-img
+            src="/asaichi/DSC00030.jpg"
+            aspect-ratio="1"
+            class="grey lighten-2"
+          >
+          </v-img>
+        </v-col>
+      </v-row>
     </div>
   </v-app>
 </template>
 <style scoped>
-h3 {
+h3,
+h4,
+p {
   text-align: center;
 }
+
 .box17 {
   margin: 2em 0;
   position: relative;
   padding: 0.5em 1.5em;
-  border-top: solid 2px #3d97f0;
-  border-bottom: solid 2px #3d97f0;
+  border-top: solid 2px #e50215;
+  border-bottom: solid 2px #e50215;
 }
 .box17:before,
 .box17:after {
@@ -39,7 +53,7 @@ h3 {
   width: 2px;
   height: -webkit-calc(100% + 20px);
   height: calc(100% + 20px);
-  background-color: #3d97f0;
+  background-color: #e50215;
 }
 .box17:before {
   left: 10px;

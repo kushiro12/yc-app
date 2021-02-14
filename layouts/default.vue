@@ -29,7 +29,8 @@
       :clipped-left="$vuetify.breakpoint.lgAndUp"
       app
       flat
-      color="white"
+      color="#2151a7"
+      dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>
@@ -41,12 +42,45 @@
         <nuxt />
       </v-container>
     </v-main>
-    <v-footer
-      dark
-      padless
-      color="#2887e6"
-      class="lighten-1 white--text text-center"
-    >
+    <v-footer padless color="#2151a7" class="lighten-1" dark>
+      <v-container id="google-maps" tag="section">
+        <v-row justify="end">
+          <v-col lg="6" md="6" sm="6" xs="6" align="center">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.7171351439147!2d139.82623681525882!3d35.68396638019371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601888ee1aa281b5%3A0x457b4e2dc404545f!2z44CSMTM2LTAwNzMg5p2x5Lqs6YO95rGf5p2x5Yy65YyX56CC77yT5LiB55uu77yU4oiS77yT77yS!5e0!3m2!1sja!2sjp!4v1601017074562!5m2!1sja!2sjp&z=16"
+              height="200"
+              frameborder="0"
+              style="border: 0"
+              allowfullscreen
+            />
+          </v-col>
+
+          <v-col lg="6" md="6" sm="6" xs="6" align-self="center">
+            <v-layout justify-center>
+              <v-flex>
+                <div class="address text-center">
+                  <h3>読売センター砂町</h3>
+                  <h4>店舗所在地</h4>
+
+                  <p>
+                    <v-icon small class="icon">home</v-icon
+                    >東京都江東区北砂3-4-32
+                  </p>
+                  <p id="tel">
+                    <v-icon small class="icon">mdi-phone</v-icon>03-3644-2921
+                  </p>
+                  <p><v-icon small class="icon">mdi-fax</v-icon>03-3644-2922</p>
+                  <p>
+                    <v-icon small class="icon">mdi-email</v-icon
+                    >zzzbubuzzz@gmail.com
+                  </p>
+                </div>
+              </v-flex>
+            </v-layout>
+          </v-col>
+        </v-row>
+      </v-container>
+
       <v-col cols="12">
         <v-card-text class="white--text">
           <div class="shopdata">

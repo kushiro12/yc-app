@@ -38,12 +38,24 @@ export const actions = {
 
     }),
 
-    /*get: firestoreAction((context, id) => {
-        recyclesRef.doc(id).get(id)
-    }),*/
+    updaterecycle: firestoreAction((context, recycle) => {
+        recyclesRef.doc(recycle.id).update(recycle
+        )
+    }),
 
     remove: firestoreAction((context, recycle) => {
         recyclesRef.doc(recycle.id).delete()
+    }),
+
+    deletedrecycle: firestoreAction((context, recycle) => {
+        recyclesRef.doc(recycle.id).update(
+            {
+
+                deleted: !recycle.deleted
+            }
+        )
+
+
     }),
 
     toggle: firestoreAction((context, recycle) => {
@@ -60,31 +72,11 @@ export const actions = {
 
 }
 
-
-
 export const getters = {
-    orderdRecycles: state => {
-        return _.sortBy(state.recycles, 'created')
-            .reverse()
-    }
 
-}
-export const mutations = {
-    addrecycle(state, paylaod) {
-        state.recycles.push(paylaod.recycle)
-    },
-    updaterecycle(state, paylaod) {
-        state.recycles.forEach((recycle, index) => {
-            if (recycle.id === paylaod.recycle.id) {
-                state.recycles.splice(index, 1, paylaod.recycle)
-            }
-        })
-    },
-    removerecycle(state, paylaod) {
-        state.recycles.forEach((recycle, index) => {
-            if (recycle.id === paylaod.recycle.id) {
-                state.recycles.splice(index, 1)
-            }
-        })
+
+    doneDeleted: state => {
+        return state.recycles.filter(deleted => deleted.deleted == false)
     }
 }
+

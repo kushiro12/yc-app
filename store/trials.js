@@ -37,16 +37,24 @@ export const actions = {
                 })
 
     }),
-
-    /*get: firestoreAction((context, id) => {
-        trialsRef.doc(id).get(id)
-    }),*/
     updatetrial: firestoreAction((context, trial) => {
-        trialsRef.doc(trial.id).update(
+        trialsRef.doc(trial.id).update(trial
         )
     }),
+
     remove: firestoreAction((context, trial) => {
         trialsRef.doc(trial.id).delete()
+    }),
+
+    deletedtrial: firestoreAction((context, trial) => {
+        trialsRef.doc(trial.id).update(
+            {
+
+                deleted: !trial.deleted
+            }
+        )
+
+
     }),
 
     toggle: firestoreAction((context, trial) => {
@@ -63,17 +71,11 @@ export const actions = {
 
 }
 
+export const getters = {
 
-export const mutations = {
-    addtrial(state, paylaod) {
-        state.trials.push(paylaod.trial)
-    },
 
-    removetrial(state, paylaod) {
-        state.trials.forEach((trial, index) => {
-            if (trial.id === paylaod.trial.id) {
-                state.trials.splice(index, 1)
-            }
-        })
+    doneDeleted: state => {
+        return state.trials.filter(deleted => deleted.deleted == false)
     }
 }
+

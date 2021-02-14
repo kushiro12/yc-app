@@ -4,14 +4,12 @@
       <v-data-table
         :headers="headers"
         :items="recycles"
-        sort-by="recyclesdate"
+        sort-by="dateRangeText"
         class="elevation-1"
       >
         <template v-slot:top>
           <v-toolbar flat color="white">
             <h2 justify="center">資源回収</h2>
-            <v-spacer></v-spacer>
-            <v-spacer />
 
             <v-dialog v-model="dialog" max-width="700px">
               <v-card>
@@ -22,37 +20,44 @@
                 <v-card-text>
                   <v-container>
                     <v-row>
-                      <v-col cols="6">
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="recycle.id"
+                          label="ID"
+                          readonly
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
                         <v-text-field
                           v-model="recycle.name"
                           label="名前"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
                           v-model="recycle.tell"
                           label="電話番号"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
                           v-model="recycle.email"
                           label="email"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
                           v-model="recycle.address"
                           label="住所１"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
                           v-model="recycle.address2"
                           label="住所２"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
                           v-model="recycle.recyclesdate"
                           label="回収日"
@@ -67,7 +72,9 @@
                   <v-btn color="blue darken-1" text @click="close"
                     >閉じる</v-btn
                   >
-                  <v-btn color="blue darken-1" text @click="update">保存</v-btn>
+                  <v-btn color="blue darken-1" text @click="update(recycle)"
+                    >保存</v-btn
+                  >
                 </v-card-actions>
               </v-card>
             </v-dialog>
@@ -76,9 +83,9 @@
         <template v-slot:item.actions="{ item }"></template>
 
         <template v-slot:item.done="{ item }">
-          <v-btn :color="getColor(item.done)" @click="toggle(item)" dark
-            >完了</v-btn
-          >
+          <v-btn :color="getColor(item.done)" @click="toggle(item)" dark>{{
+            getText(item.done)
+          }}</v-btn>
         </template>
         <template v-slot:item.created="{ item }">
           <span>{{ item.created.toDate() | dateFilter }}</span>
@@ -89,7 +96,7 @@
           >
         </template>
         <template v-slot:item.remove="{ item }">
-          <v-icon small @click="remove(item)">mdi-delete</v-icon>
+          <v-icon small @click="deletedrecycle(item)">mdi-delete</v-icon>
         </template>
       </v-data-table>
     </v-container>
@@ -128,7 +135,7 @@ export default {
 
   computed: {
     recycles() {
-      return this.$store.state.recycles.recycles;
+      return this.$store.getters["recycles/doneDeleted"];
     },
   },
 
@@ -144,30 +151,36 @@ export default {
   },
   methods: {
     edit(recycle) {
-      this.recycle = Object.assign({}, recycle);
+      this.recycle = Object.assign({ id: recycle.id }, recycle);
       this.dialog = true;
     },
-    update(recycle) {
-      const payload = { recycle: this.recycle };
-      this.$store.dispatch("recycles/toggle", recycle);
+    update(id) {
+      this.$store.dispatch("recycles/updaterecycle", id);
       this.close();
     },
-    remove(recycle) {
-      const payload = { recycle: recycle };
-      // this.$store.commit("removerecycle", payload);
-      this.$store.dispatch("recycles/remove", recycle);
+    async deletedrecycle(recycle) {
+      const result = await confirm("削除してもよろしいですか？");
+
+      if (result === true) {
+        this.$store.dispatch("recycles/deletedrecycle", recycle);
+      }
     },
+
     close() {
       this.dialog = false;
       this.recycle = {};
     },
     getColor(done) {
-      if (done === false) return "#616161";
+      if (done === false) return "error";
       else if (done === true) return "green";
       else return "pink";
     },
+    getText(done) {
+      if (done === false) return "未完了";
+      else if (done === true) return "完了";
+      else return "pink";
+    },
     toggle(recycle) {
-      const payload = { recycle: recycle };
       this.$store.dispatch("recycles/toggle", recycle);
     },
     logOut() {

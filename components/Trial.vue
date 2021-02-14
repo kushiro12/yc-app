@@ -4,14 +4,12 @@
       <v-data-table
         :headers="headers"
         :items="trials"
-        sort-by="created"
+        sort-by="dateRangeText"
         class="elevation-1"
       >
         <template v-slot:top>
           <v-toolbar flat color="white">
-            <h2 justify="center">契約更新</h2>
-            <v-spacer></v-spacer>
-            <v-spacer />
+            <h2 justify="center">お試し新聞</h2>
 
             <v-dialog v-model="dialog" max-width="700px">
               <v-card>
@@ -26,6 +24,7 @@
                         <v-text-field
                           v-model="trial.id"
                           label="ID"
+                          readonly
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
@@ -60,63 +59,38 @@
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
-                          v-model="trial.payment"
-                          label="支払い方法"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="6">
-                        <v-text-field
                           v-model="trial.papertype1"
                           label="銘柄"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
-                          v-model="trial.sports"
+                          v-model="trial.papertype2"
                           label="銘柄"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
-                          v-model="trial.school"
+                          v-model="trial.papertype3"
                           label="銘柄"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
                           v-model="trial.kodomo"
                           label="銘柄"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
-                          v-model="trial.japannews"
+                          v-model="trial.school"
                           label="銘柄"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
-                          v-model="trial.papertype2"
-                          label="契約期間"
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="6">
-                        <v-text-field
-                          v-model="trial.year"
-                          label="開始年"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="6">
-                        <v-text-field
-                          v-model="trial.month"
-                          label="開始月"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="6">
-                        <v-text-field
-                          v-model="trial.precent"
-                          label="特典"
+                          v-model="trial.trialsdate"
+                          label="開始日"
                         ></v-text-field>
                       </v-col>
                     </v-row>
@@ -139,9 +113,9 @@
         <template v-slot:item.actions="{ item }"></template>
 
         <template v-slot:item.done="{ item }">
-          <v-btn :color="getColor(item.done)" @click="toggle(item)" dark
-            >完了</v-btn
-          >
+          <v-btn :color="getColor(item.done)" @click="toggle(item)" dark>{{
+            getText(item.done)
+          }}</v-btn>
         </template>
         <template v-slot:item.created="{ item }">
           <span>{{ item.created.toDate() | dateFilter }}</span>
@@ -152,7 +126,7 @@
           >
         </template>
         <template v-slot:item.remove="{ item }">
-          <v-icon small @click="remove(item)">mdi-delete</v-icon>
+          <v-icon small @click="deletedtrial(item)">mdi-delete</v-icon>
         </template>
       </v-data-table>
     </v-container>
@@ -178,7 +152,7 @@ export default {
       },
 
       { text: "名前", value: "name" },
-
+      { text: "停止期間", value: "dateRangeText" },
       { text: "電話番号", value: "tell" },
       { text: "E-Mail", value: "email" },
       { text: "申込日", value: "created" },
@@ -191,7 +165,7 @@ export default {
 
   computed: {
     trials() {
-      return this.$store.state.trials.trials;
+      return this.$store.getters["trials/doneDeleted"];
     },
   },
 
@@ -207,29 +181,36 @@ export default {
   },
   methods: {
     edit(trial) {
-      this.trial = Object.assign({}, trial);
+      this.trial = Object.assign({ id: trial.id }, trial);
       this.dialog = true;
     },
     update(id) {
       this.$store.dispatch("trials/updatetrial", id);
       this.close();
     },
-    remove(trial) {
-      const payload = { trial: trial };
+    async deletedtrial(trial) {
+      const result = await confirm("削除してもよろしいですか？");
 
-      this.$store.dispatch("trials/remove", trial);
+      if (result === true) {
+        this.$store.dispatch("trials/deletedtrial", trial);
+      }
     },
+
     close() {
       this.dialog = false;
       this.trial = {};
     },
     getColor(done) {
-      if (done === false) return "#616161";
+      if (done === false) return "error";
       else if (done === true) return "green";
       else return "pink";
     },
+    getText(done) {
+      if (done === false) return "未完了";
+      else if (done === true) return "完了";
+      else return "pink";
+    },
     toggle(trial) {
-      const payload = { trial: trial };
       this.$store.dispatch("trials/toggle", trial);
     },
     logOut() {

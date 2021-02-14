@@ -4,14 +4,12 @@
       <v-data-table
         :headers="headers"
         :items="desireds"
-        sort-by="desiredsdate"
+        sort-by="dateRangeText"
         class="elevation-1"
       >
         <template v-slot:top>
           <v-toolbar flat color="white">
-            <h2 justify="center">集金希望日</h2>
-            <v-spacer></v-spacer>
-            <v-spacer />
+            <h2 justify="center">配達一時停止</h2>
 
             <v-dialog v-model="dialog" max-width="700px">
               <v-card>
@@ -22,41 +20,53 @@
                 <v-card-text>
                   <v-container>
                     <v-row>
-                      <v-col cols="6">
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="desired.id"
+                          label="ID"
+                          readonly
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
                         <v-text-field
                           v-model="desired.name"
                           label="名前"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
                           v-model="desired.tell"
                           label="電話番号"
                         ></v-text-field>
                       </v-col>
-
-                      <v-col cols="6">
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="desired.email"
+                          label="email"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
                         <v-text-field
                           v-model="desired.address"
                           label="住所１"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
                           v-model="desired.address2"
                           label="住所２"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
                           v-model="desired.desiredsdate"
-                          label="希望日"
+                          label="配達日"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
                           v-model="desired.desiredstime"
-                          label="希望時間"
+                          label="配達時間"
                         ></v-text-field>
                       </v-col>
                     </v-row>
@@ -68,7 +78,9 @@
                   <v-btn color="blue darken-1" text @click="close"
                     >閉じる</v-btn
                   >
-                  <v-btn color="blue darken-1" text @click="update">保存</v-btn>
+                  <v-btn color="blue darken-1" text @click="update(desired)"
+                    >保存</v-btn
+                  >
                 </v-card-actions>
               </v-card>
             </v-dialog>
@@ -77,9 +89,9 @@
         <template v-slot:item.actions="{ item }"></template>
 
         <template v-slot:item.done="{ item }">
-          <v-btn :color="getColor(item.done)" @click="toggle(item)" dark
-            >完了</v-btn
-          >
+          <v-btn :color="getColor(item.done)" @click="toggle(item)" dark>{{
+            getText(item.done)
+          }}</v-btn>
         </template>
         <template v-slot:item.created="{ item }">
           <span>{{ item.created.toDate() | dateFilter }}</span>
@@ -90,7 +102,7 @@
           >
         </template>
         <template v-slot:item.remove="{ item }">
-          <v-icon small @click="remove(item)">mdi-delete</v-icon>
+          <v-icon small @click="deleteddesired(item)">mdi-delete</v-icon>
         </template>
       </v-data-table>
     </v-container>
@@ -116,10 +128,9 @@ export default {
       },
 
       { text: "名前", value: "name" },
-      { text: "希望日", value: "desiredsdate" },
-      { text: "希望時間", value: "desiredstime" },
+      { text: "停止期間", value: "dateRangeText" },
       { text: "電話番号", value: "tell" },
-
+      { text: "E-Mail", value: "email" },
       { text: "申込日", value: "created" },
 
       { text: "詳細", value: "actions", sortable: false },
@@ -130,7 +141,7 @@ export default {
 
   computed: {
     desireds() {
-      return this.$store.state.desireds.desireds;
+      return this.$store.getters["desireds/doneDeleted"];
     },
   },
 
@@ -146,30 +157,36 @@ export default {
   },
   methods: {
     edit(desired) {
-      this.desired = Object.assign({}, desired);
+      this.desired = Object.assign({ id: desired.id }, desired);
       this.dialog = true;
     },
-    update(desired) {
-      const payload = { desired: this.desired };
-      this.$store.dispatch("desireds/toggle", desired);
+    update(id) {
+      this.$store.dispatch("desireds/updatedesired", id);
       this.close();
     },
-    remove(desired) {
-      const payload = { desired: desired };
-      // this.$store.commit("removedesired", payload);
-      this.$store.dispatch("desireds/remove", desired);
+    async deleteddesired(desired) {
+      const result = await confirm("削除してもよろしいですか？");
+
+      if (result === true) {
+        this.$store.dispatch("desireds/deleteddesired", desired);
+      }
     },
+
     close() {
       this.dialog = false;
       this.desired = {};
     },
     getColor(done) {
-      if (done === false) return "#616161";
+      if (done === false) return "error";
       else if (done === true) return "green";
       else return "pink";
     },
+    getText(done) {
+      if (done === false) return "未完了";
+      else if (done === true) return "完了";
+      else return "pink";
+    },
     toggle(desired) {
-      const payload = { desired: desired };
       this.$store.dispatch("desireds/toggle", desired);
     },
     logOut() {

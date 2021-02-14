@@ -17,7 +17,7 @@ export const actions = {
     }),
 
 
-    pauseadd: firestoreAction((context, { name, address, address2, tell, leave, dateRangeText, email }) => {
+    pauseadd: firestoreAction((context, { name, address, address2, tell, email, pausesdate, pausewater, pausentity, pausetime }) => {
         if (name.trim())
             pausesRef.add
                 ({
@@ -26,26 +26,40 @@ export const actions = {
                     address2: address2,
                     email: email,
                     tell: tell,
-                    dateRangeText: dateRangeText,
-                    done: false,
                     created: firebase.firestore.FieldValue.serverTimestamp(),
-                    leave: leave,
+                    done: false,
+                    deleted: false,
+                    pausesdate: pausesdate,
+                    pausewater: pausewater,
+                    pausentity: pausentity,
+                    pausetime: pausetime,
 
 
 
-                    // done: false,
-                    // created: firebase.firestore.FieldValue.serverTimestamp()
+
 
                 })
 
     }),
 
-    /*get: firestoreAction((context, id) => {
-        pausesRef.doc(id).get(id)
-    }),*/
+    updatepause: firestoreAction((context, pause) => {
+        pausesRef.doc(pause.id).update(pause
+        )
+    }),
 
     remove: firestoreAction((context, pause) => {
         pausesRef.doc(pause.id).delete()
+    }),
+
+    deletedpause: firestoreAction((context, pause) => {
+        pausesRef.doc(pause.id).update(
+            {
+
+                deleted: !pause.deleted
+            }
+        )
+
+
     }),
 
     toggle: firestoreAction((context, pause) => {
@@ -62,13 +76,11 @@ export const actions = {
 
 }
 
-
-
 export const getters = {
-    orderdPauses: state => {
-        return _.sortBy(state.pauses, 'created')
-            .reverse()
-    }
 
+
+    doneDeleted: state => {
+        return state.pauses.filter(deleted => deleted.deleted == false)
+    }
 }
 

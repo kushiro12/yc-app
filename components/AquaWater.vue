@@ -3,13 +3,13 @@
     <v-container>
       <v-data-table
         :headers="headers"
-        :items="users"
+        :items="aquas"
         sort-by="dateRangeText"
         class="elevation-1"
       >
         <template v-slot:top>
           <v-toolbar flat color="white">
-            <h2 justify="center">契約更新</h2>
+            <h2 justify="center">配達一時停止</h2>
 
             <v-dialog v-model="dialog" max-width="700px">
               <v-card>
@@ -22,100 +22,63 @@
                     <v-row>
                       <v-col cols="12">
                         <v-text-field
-                          v-model="user.id"
+                          v-model="aqua.id"
                           label="ID"
                           readonly
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
-                          v-model="user.name"
+                          v-model="aqua.name"
                           label="名前"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
-                          v-model="user.tell"
+                          v-model="aqua.tell"
                           label="電話番号"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
-                          v-model="user.email"
+                          v-model="aqua.email"
                           label="email"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
-                          v-model="user.address"
+                          v-model="aqua.address"
                           label="住所１"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
-                          v-model="user.address2"
+                          v-model="aqua.address2"
                           label="住所２"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="6">
+                        <v-text-field
+                          v-model="aqua.aquawater"
+                          label="お取引内容"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
-                          v-model="user.payment"
-                          label="支払い方法"
+                          v-model="aqua.aquantity"
+                          label="数量"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
-                          v-model="user.papertype1"
-                          label="銘柄"
+                          v-model="aqua.aquasdate"
+                          label="配達希望日"
                         ></v-text-field>
                       </v-col>
-                      <v-col cols="6">
+                      <v-col cols="12">
                         <v-text-field
-                          v-model="user.sports"
-                          label="銘柄"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="6">
-                        <v-text-field
-                          v-model="user.school"
-                          label="銘柄"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="6">
-                        <v-text-field
-                          v-model="user.kodomo"
-                          label="銘柄"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="6">
-                        <v-text-field
-                          v-model="user.japannews"
-                          label="銘柄"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="6">
-                        <v-text-field
-                          v-model="user.papertype2"
-                          label="契約期間"
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col cols="6">
-                        <v-text-field
-                          v-model="user.year"
-                          label="開始年"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="6">
-                        <v-text-field
-                          v-model="user.month"
-                          label="開始月"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="6">
-                        <v-text-field
-                          v-model="user.precent"
-                          label="特典"
+                          v-model="aqua.aquatime"
+                          label="配達希望時間"
                         ></v-text-field>
                       </v-col>
                     </v-row>
@@ -127,7 +90,7 @@
                   <v-btn color="blue darken-1" text @click="close"
                     >閉じる</v-btn
                   >
-                  <v-btn color="blue darken-1" text @click="update(user)"
+                  <v-btn color="blue darken-1" text @click="update(aqua)"
                     >保存</v-btn
                   >
                 </v-card-actions>
@@ -151,7 +114,7 @@
           >
         </template>
         <template v-slot:item.remove="{ item }">
-          <v-icon small @click="deleteduser(item)">mdi-delete</v-icon>
+          <v-icon small @click="deletedaqua(item)">mdi-delete</v-icon>
         </template>
       </v-data-table>
     </v-container>
@@ -163,7 +126,7 @@ import moment from "moment";
 import firebase from "@/plugins/firebase";
 export default {
   created: function () {
-    this.$store.dispatch("users/init");
+    this.$store.dispatch("aquas/init");
   },
 
   data: () => ({
@@ -177,7 +140,7 @@ export default {
       },
 
       { text: "名前", value: "name" },
-
+      { text: "停止期間", value: "dateRangeText" },
       { text: "電話番号", value: "tell" },
       { text: "E-Mail", value: "email" },
       { text: "申込日", value: "created" },
@@ -185,12 +148,12 @@ export default {
       { text: "詳細", value: "actions", sortable: false },
       { text: "削除", value: "remove", sortable: false },
     ],
-    user: {},
+    aqua: {},
   }),
 
   computed: {
-    users() {
-      return this.$store.getters["users/doneDeleted"];
+    aquas() {
+      return this.$store.getters["aquas/doneDeleted"];
     },
   },
 
@@ -205,25 +168,25 @@ export default {
     },
   },
   methods: {
-    edit(user) {
-      this.user = Object.assign({ id: user.id }, user);
+    edit(aqua) {
+      this.aqua = Object.assign({ id: aqua.id }, aqua);
       this.dialog = true;
     },
     update(id) {
-      this.$store.dispatch("users/updateuser", id);
+      this.$store.dispatch("aquas/updateaqua", id);
       this.close();
     },
-    async deleteduser(user) {
+    async deletedaqua(aqua) {
       const result = await confirm("削除してもよろしいですか？");
 
       if (result === true) {
-        this.$store.dispatch("users/deleteduser", user);
+        this.$store.dispatch("aquas/deletedaqua", aqua);
       }
     },
 
     close() {
       this.dialog = false;
-      this.user = {};
+      this.aqua = {};
     },
     getColor(done) {
       if (done === false) return "error";
@@ -235,8 +198,8 @@ export default {
       else if (done === true) return "完了";
       else return "pink";
     },
-    toggle(user) {
-      this.$store.dispatch("users/toggle", user);
+    toggle(aqua) {
+      this.$store.dispatch("aquas/toggle", aqua);
     },
     logOut() {
       firebase.auth().signOut();

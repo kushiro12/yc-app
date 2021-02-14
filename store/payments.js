@@ -38,12 +38,24 @@ export const actions = {
 
     }),
 
-    /*get: firestoreAction((context, id) => {
-        paymentsRef.doc(id).get(id)
-    }),*/
+    updatepayment: firestoreAction((context, payment) => {
+        paymentsRef.doc(payment.id).update(payment
+        )
+    }),
 
     remove: firestoreAction((context, payment) => {
         paymentsRef.doc(payment.id).delete()
+    }),
+
+    deletedpayment: firestoreAction((context, payment) => {
+        paymentsRef.doc(payment.id).update(
+            {
+
+                deleted: !payment.deleted
+            }
+        )
+
+
     }),
 
     toggle: firestoreAction((context, payment) => {
@@ -60,31 +72,11 @@ export const actions = {
 
 }
 
-
-
 export const getters = {
-    orderdPayment: state => {
-        return _.sortBy(state.payments, 'created')
-            .reverse()
-    }
 
-}
-export const mutations = {
-    addpayment(state, paylaod) {
-        state.payments.push(paylaod.payment)
-    },
-    updatepayment(state, paylaod) {
-        state.payments.forEach((payment, index) => {
-            if (payment.id === paylaod.payment.id) {
-                state.payments.splice(index, 1, paylaod.payment)
-            }
-        })
-    },
-    removepayment(state, paylaod) {
-        state.payments.forEach((payment, index) => {
-            if (payment.id === paylaod.payment.id) {
-                state.payments.splice(index, 1)
-            }
-        })
+
+    doneDeleted: state => {
+        return state.payments.filter(deleted => deleted.deleted == false)
     }
 }
+

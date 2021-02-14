@@ -4,14 +4,12 @@
       <v-data-table
         :headers="headers"
         :items="newcontructs"
-        sort-by="created"
+        sort-by="dateRangeText"
         class="elevation-1"
       >
         <template v-slot:top>
           <v-toolbar flat color="white">
-            <h2 justify="center">契約更新</h2>
-            <v-spacer></v-spacer>
-            <v-spacer />
+            <h2 justify="center">配達一時停止</h2>
 
             <v-dialog v-model="dialog" max-width="700px">
               <v-card>
@@ -26,6 +24,7 @@
                         <v-text-field
                           v-model="newcontruct.id"
                           label="ID"
+                          readonly
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
@@ -139,9 +138,9 @@
         <template v-slot:item.actions="{ item }"></template>
 
         <template v-slot:item.done="{ item }">
-          <v-btn :color="getColor(item.done)" @click="toggle(item)" dark
-            >完了</v-btn
-          >
+          <v-btn :color="getColor(item.done)" @click="toggle(item)" dark>{{
+            getText(item.done)
+          }}</v-btn>
         </template>
         <template v-slot:item.created="{ item }">
           <span>{{ item.created.toDate() | dateFilter }}</span>
@@ -152,7 +151,7 @@
           >
         </template>
         <template v-slot:item.remove="{ item }">
-          <v-icon small @click="remove(item)">mdi-delete</v-icon>
+          <v-icon small @click="deletednewcontruct(item)">mdi-delete</v-icon>
         </template>
       </v-data-table>
     </v-container>
@@ -191,7 +190,7 @@ export default {
 
   computed: {
     newcontructs() {
-      return this.$store.state.newcontructs.newcontructs;
+      return this.$store.getters["newcontructs/doneDeleted"];
     },
   },
 
@@ -207,30 +206,36 @@ export default {
   },
   methods: {
     edit(newcontruct) {
-      this.newcontruct = Object.assign({}, newcontruct);
+      this.newcontruct = Object.assign({ id: newcontruct.id }, newcontruct);
       this.dialog = true;
     },
     update(id) {
-      // const payload = { newcontruct: this.newcontruct };
       this.$store.dispatch("newcontructs/updatenewcontruct", id);
       this.close();
     },
-    remove(newcontruct) {
-      const payload = { newcontruct: newcontruct };
-      // this.$store.commit("removenewcontruct", payload);
-      this.$store.dispatch("newcontructs/remove", newcontruct);
+    async deletednewcontruct(newcontruct) {
+      const result = await confirm("削除してもよろしいですか？");
+
+      if (result === true) {
+        this.$store.dispatch("newcontructs/deletednewcontruct", newcontruct);
+      }
     },
+
     close() {
       this.dialog = false;
       this.newcontruct = {};
     },
     getColor(done) {
-      if (done === false) return "#616161";
+      if (done === false) return "error";
       else if (done === true) return "green";
       else return "pink";
     },
+    getText(done) {
+      if (done === false) return "未完了";
+      else if (done === true) return "完了";
+      else return "pink";
+    },
     toggle(newcontruct) {
-      const payload = { newcontruct: newcontruct };
       this.$store.dispatch("newcontructs/toggle", newcontruct);
     },
     logOut() {

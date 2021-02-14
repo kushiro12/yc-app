@@ -38,12 +38,24 @@ export const actions = {
 
     }),
 
-    /*get: firestoreAction((context, id) => {
-        desiredsRef.doc(id).get(id)
-    }),*/
+    updatedesired: firestoreAction((context, desired) => {
+        desiredsRef.doc(desired.id).update(desired
+        )
+    }),
 
     remove: firestoreAction((context, desired) => {
         desiredsRef.doc(desired.id).delete()
+    }),
+
+    deleteddesired: firestoreAction((context, desired) => {
+        desiredsRef.doc(desired.id).update(
+            {
+
+                deleted: !desired.deleted
+            }
+        )
+
+
     }),
 
     toggle: firestoreAction((context, desired) => {
@@ -60,31 +72,11 @@ export const actions = {
 
 }
 
-
-
 export const getters = {
-    orderdDesireds: state => {
-        return _.sortBy(state.desireds, 'created')
-            .reverse()
-    }
 
-}
-export const mutations = {
-    adddesired(state, paylaod) {
-        state.desireds.push(paylaod.desired)
-    },
-    updatedesired(state, paylaod) {
-        state.desireds.forEach((desired, index) => {
-            if (desired.id === paylaod.desired.id) {
-                state.desireds.splice(index, 1, paylaod.desired)
-            }
-        })
-    },
-    removedesired(state, paylaod) {
-        state.desireds.forEach((desired, index) => {
-            if (desired.id === paylaod.desired.id) {
-                state.desireds.splice(index, 1)
-            }
-        })
+
+    doneDeleted: state => {
+        return state.desireds.filter(deleted => deleted.deleted == false)
     }
 }
+

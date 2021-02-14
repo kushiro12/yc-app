@@ -12,7 +12,10 @@
                     v-text="item.title"
                   ></v-card-title>
 
-                  <v-card-subtitle v-text="item.subtitle"></v-card-subtitle>
+                  <v-card-subtitle
+                    v-text="item.subtitle"
+                    class="title font-weight-medium"
+                  ></v-card-subtitle>
                 </div>
 
                 <v-avatar class="ma-3" size="90">
@@ -32,58 +35,58 @@ export default {
   data: () => ({
     items: [
       {
-        color: "#1823e6",
-        src: require("~/assets/images/2742729.jpg"),
-        title: "ご新規契約フォーム",
+        color: "#e50213",
+        // src: require("~/assets/images/2742729.jpg"),
+        title: "新聞を購読したい方",
         subtitle: "新たなご購読はこちら",
         link: "/newcustomers",
       },
       {
-        color: "#2887e1",
-        src: require("~/assets/images/form.jpg"),
+        color: "#2151a7",
+        // src: require("~/assets/images/form.jpg"),
         title: "ご契約更新フォーム",
-        subtitle: "ご契約の更新はこちら",
+        subtitle: "購読継続される方",
         link: "/form",
       },
       {
-        color: "#7CB342",
-        src: require("~/assets/images/recycle.jpg"),
-        title: "古新聞、段ボールの回収",
+        color: "#e50213",
+        // src: require("~/assets/images/recycle.jpg"),
+        title: "読み終わった新聞の回収依頼",
         subtitle: "古新聞、段ボールの回収はこちら",
         link: "/recycle",
       },
       {
-        color: "#FF6F00",
-        src: require("~/assets/images/pause.jpg"),
+        color: "#2151a7",
+        // src: require("~/assets/images/pause.jpg"),
         title: "お出かけになる際には",
         subtitle: "配達の一時停止はこちら",
         link: "/pause",
       },
 
       {
-        color: "#F4511E",
-        src: require("~/assets/images/payment.jpg"),
-        title: "お支払い方法の変更",
+        color: "#e50213",
+        // src: require("~/assets/images/payment.jpg"),
+        title: "お支払い方法を変更されたい方",
         subtitle: "お支払い方法の変更はこちら",
         link: "/payment",
       },
       {
-        color: "#952175",
-        src: require("~/assets/images/coupon.jpg"),
-        title: "特別クーポン",
+        color: "#2151a7",
+        // src: require("~/assets/images/coupon.jpg"),
+        title: "美味しいお米の通販",
         subtitle: "特別なクーポンはこちら",
-        link: "/coupon",
+        link: "/rice",
       },
       {
-        color: "#E91E63",
-        src: require("~/assets/images/ycsec.jpg"),
-        title: "おすすめ通販",
+        color: "#e50213",
+        // src: require("~/assets/images/ycsec.jpg"),
+        title: "アクアクララご注文をしたい方",
         subtitle: "お得な通販はこちら",
-        link: "/ycsec",
+        link: "/aquawater",
       },
       {
-        color: "#7CB342",
-        src: require("~/assets/images/63.jpg"),
+        color: "#2151a7",
+        // src: require("~/assets/images/63.jpg"),
         title: "お試し一週間",
         subtitle: "お試し購読はこちら",
         link: "/trial",

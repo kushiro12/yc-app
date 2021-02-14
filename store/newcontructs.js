@@ -43,15 +43,24 @@ export const actions = {
 
     }),
 
-    /*get: firestoreAction((context, id) => {
-        newcontructsRef.doc(id).get(id)
-    }),*/
     updatenewcontruct: firestoreAction((context, newcontruct) => {
-        newcontructsRef.doc(newcontruct.id).update(
+        newcontructsRef.doc(newcontruct.id).update(newcontruct
         )
     }),
-    remove: firestoreAction((context, newcontruct) => {
-        newcontructsRef.doc(newcontruct.id).delete()
+
+    // remove: firestoreAction((context, newcontruct) => {
+    //     newcontructsRef.doc(newcontruct.id).delete()
+    // }),
+
+    deletednewcontruct: firestoreAction((context, newcontruct) => {
+        newcontructsRef.doc(newcontruct.id).update(
+            {
+
+                deleted: !newcontruct.deleted
+            }
+        )
+
+
     }),
 
     toggle: firestoreAction((context, newcontruct) => {
@@ -68,20 +77,11 @@ export const actions = {
 
 }
 
+export const getters = {
 
 
-
-
-export const mutations = {
-    addnewcontruct(state, paylaod) {
-        state.newcontructs.push(paylaod.newcontruct)
-    },
-
-    removenewcontruct(state, paylaod) {
-        state.newcontructs.forEach((newcontruct, index) => {
-            if (newcontruct.id === paylaod.newcontruct.id) {
-                state.newcontructs.splice(index, 1)
-            }
-        })
+    doneDeleted: state => {
+        return state.newcontructs.filter(deleted => deleted.deleted == false)
     }
 }
+
