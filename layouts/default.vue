@@ -3,6 +3,8 @@
     <v-navigation-drawer
       v-model="drawer"
       :clipped="$vuetify.breakpoint.lgAndUp"
+      color="#2251a6"
+      dark
       app
     >
       <v-list dense>
@@ -104,11 +106,12 @@ export default {
     drawer: false,
     items: [
       { icon: "home", text: "ホーム", link: "/" },
-      { icon: "edit", text: "ご契約更新", link: "/form" },
+      { icon: "edit", text: "新聞を購読したい方", link: "/newcontruct" },
+      { icon: "edit", text: "継続購読される方", link: "/form" },
       { icon: "mdi-motorbike", text: "配達の一時停止", link: "/pause" },
       {
         icon: "mdi-package-variant",
-        text: "古新聞 段ボールの回収",
+        text: "古新聞の回収依頼",
         link: "/recycle",
       },
       {
@@ -116,12 +119,17 @@ export default {
         text: "お支払い方法の変更",
         link: "/payment",
       },
-      { icon: "money", text: "特別クーポン", link: "/coupon" },
-      { icon: "mdi-cart-outline", text: "おすすめ通販", link: "/ycsec" },
+      { icon: "money", text: "日曜朝市開催中！", link: "/asaichi" },
+      { icon: "mdi-cart-outline", text: "美味しいお米の通販", link: "/rice" },
       {
         icon: "mdi-calendar-month-outline",
         text: "お試し購読",
         link: "/trial",
+      },
+      {
+        icon: "mdi-cart-outline",
+        text: "アクアクララのご注文",
+        link: "/aquawater",
       },
     ],
   }),

@@ -215,7 +215,11 @@
 
           <div>
             <h3 class="sub-title">特典プレゼント</h3>
-            <v-container id="dropdown-example-1">
+            <h4>
+              12ヶ月以上のご契約の方はお好きな組み合わせで合計2セットお選びいただけます
+            </h4>
+            <span>{{ ose }}</span>
+            <!-- <v-container id="dropdown-example-1">
               <v-overflow-btn
                 v-model="precent"
                 class="my-2"
@@ -223,9 +227,199 @@
                 label="いずれかお一つお選びいただけます"
                 target="#dropdown-example-1"
               ></v-overflow-btn>
+            </v-container> -->
+
+            <v-container>
+              <v-row dense>
+                <v-col md="4">
+                  <v-card
+                    class="mx-auto my-12 justify-space-around"
+                    max-width="300"
+                  >
+                    <template slot="progress">
+                      <v-progress-linear
+                        color="deep-purple"
+                        height="10"
+                        indeterminate
+                      ></v-progress-linear>
+                    </template>
+
+                    <v-img height="250" :src="osepng" contain></v-img>
+
+                    <v-card-title class="headline">尾瀬の水2L×6本</v-card-title>
+
+                    <v-divider class="mx-4"></v-divider>
+
+                    <v-card-text>
+                      <v-chip-group
+                        active-class="deep-purple accent-4 white--text"
+                        column
+                      >
+                        <v-chip filter>1セット</v-chip>
+                        <v-chip filter>2セット</v-chip>
+                      </v-chip-group>
+                    </v-card-text>
+                  </v-card>
+                </v-col>
+                <v-col md="4">
+                  <v-card
+                    class="mx-auto my-12 justify-space-around"
+                    max-width="300"
+                  >
+                    <template slot="progress">
+                      <v-progress-linear
+                        color="deep-purple"
+                        height="10"
+                        indeterminate
+                      ></v-progress-linear>
+                    </template>
+
+                    <v-img height="250" :src="paper" contain></v-img>
+
+                    <v-card-title Heading-4
+                      >トイレットペーパー12ロール</v-card-title
+                    >
+
+                    <v-divider class="mx-4"></v-divider>
+
+                    <v-card-text>
+                      <v-chip-group
+                        active-class="deep-purple accent-4 white--text"
+                        column
+                      >
+                        <v-chip filter>1セット</v-chip>
+                        <v-chip filter>2セット</v-chip>
+                      </v-chip-group>
+                    </v-card-text>
+                  </v-card>
+                </v-col>
+                <v-col md="4">
+                  <v-card
+                    class="mx-auto my-12 justify-space-around"
+                    max-width="300"
+                  >
+                    <template slot="progress">
+                      <v-progress-linear
+                        color="deep-purple"
+                        height="10"
+                        indeterminate
+                      ></v-progress-linear>
+                    </template>
+
+                    <v-img height="250" :src="senzai" contain></v-img>
+
+                    <v-card-title class="headline">液体洗剤</v-card-title>
+
+                    <v-divider class="mx-4"></v-divider>
+
+                    <v-card-text>
+                      <v-chip-group
+                        active-class="deep-purple accent-4 white--text"
+                        column
+                      >
+                        <v-chip filter>1セット</v-chip>
+                        <v-chip filter>2セット</v-chip>
+                      </v-chip-group>
+                    </v-card-text>
+                  </v-card>
+                </v-col>
+                <v-col md="4">
+                  <v-card
+                    class="mx-auto my-12 justify-space-around"
+                    max-width="300"
+                  >
+                    <template slot="progress">
+                      <v-progress-linear
+                        color="deep-purple"
+                        height="10"
+                        indeterminate
+                      ></v-progress-linear>
+                    </template>
+
+                    <v-img height="250" :src="mirin" contain></v-img>
+
+                    <v-card-title class="headline">みりん 1.8L</v-card-title>
+
+                    <v-divider class="mx-4"></v-divider>
+
+                    <v-card-text>
+                      <v-chip-group
+                        active-class="deep-purple accent-4 white--text"
+                        column
+                      >
+                        <v-chip filter>1セット</v-chip>
+                        <v-chip filter>2セット</v-chip>
+                      </v-chip-group>
+                    </v-card-text>
+                  </v-card>
+                </v-col>
+                <v-col md="4">
+                  <v-card
+                    class="mx-auto my-12 justify-space-around"
+                    max-width="300"
+                  >
+                    <template slot="progress">
+                      <v-progress-linear
+                        color="deep-purple"
+                        height="10"
+                        indeterminate
+                      ></v-progress-linear>
+                    </template>
+
+                    <v-img height="250" :src="soy" contain></v-img>
+
+                    <v-card-title class="headline"
+                      >上級本醸造醤油 1.8L</v-card-title
+                    >
+
+                    <v-divider class="mx-4"></v-divider>
+
+                    <v-card-text>
+                      <v-chip-group
+                        active-class="deep-purple accent-4 white--text"
+                        column
+                      >
+                        <v-chip filter>1セット</v-chip>
+                        <v-chip filter>2セット</v-chip>
+                      </v-chip-group>
+                    </v-card-text>
+                  </v-card>
+                </v-col>
+                <v-col md="4">
+                  <v-card
+                    class="mx-auto my-12 justify-space-around"
+                    max-width="300"
+                  >
+                    <template slot="progress">
+                      <v-progress-linear
+                        color="deep-purple"
+                        height="10"
+                        indeterminate
+                      ></v-progress-linear>
+                    </template>
+
+                    <v-img height="250" :src="oil" contain></v-img>
+
+                    <v-card-title class="headline">サラダ油 1.8L</v-card-title>
+
+                    <v-divider class="mx-4"></v-divider>
+
+                    <v-card-text>
+                      <v-chip-group
+                        active-class="deep-purple accent-4 white--text"
+                        column
+                      >
+                        <v-chip filter>1セット</v-chip>
+                        <v-chip filter>2セット</v-chip>
+                      </v-chip-group>
+                    </v-card-text>
+                  </v-card>
+                </v-col>
+              </v-row>
             </v-container>
           </div>
         </v-card>
+
         <v-form v-on:submit.prevent="add">
           <div class="text-right">
             <v-btn color="primary" @click="add" :disabled="invalid">送信</v-btn>
@@ -262,6 +456,7 @@ export default {
       year: "",
       month: "",
       payment: "",
+      ose: "",
       dropdown_font: [
         "トイレットペーパー(12ロール)",
         "尾瀬の水 ２L×６本 (１ケース)",
@@ -295,6 +490,13 @@ export default {
         "11月",
         "12月",
       ],
+
+      osepng: require("~/assets/images/ose.jpg"),
+      mirin: require("~/assets/images/mirin.jpg"),
+      paper: require("~/assets/images/11511.jpg"),
+      oil: require("~/assets/images/oil.jpg"),
+      senzai: require("~/assets/images/senzai.jpg"),
+      soy: require("~/assets/images/soy.jpg"),
     };
   },
 
@@ -316,6 +518,7 @@ export default {
         year: this.year,
         month: this.month,
         payment: this.payment,
+        ose: this.ose,
       });
       this.$router.push("/success");
     },
@@ -324,7 +527,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h2 {
+h2,
+h4 {
   text-align: center;
 }
 h3 {

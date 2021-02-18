@@ -19,18 +19,56 @@
         </p>
       </div>
       <v-row>
-        <v-col v-for="n in 9" :key="n" class="d-flex child-flex" cols="4">
-          <v-img
-            src="/asaichi/DSC00030.jpg"
-            aspect-ratio="1"
-            class="grey lighten-2"
-          >
+        <v-col
+          v-for="(asaichipng, e) in asaichipng"
+          :key="e"
+          class="d-flex child-flex"
+          cols="4"
+        >
+          <v-img :src="asaichipng.src" aspect-ratio="1" class="grey lighten-2">
           </v-img>
         </v-col>
       </v-row>
     </div>
   </v-app>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      asaichipng: [
+        {
+          src: require("@/static/asaichi/DSC00030.jpg"),
+        },
+        {
+          src: require("@/static/asaichi//DSC00031.jpg"),
+        },
+        {
+          src: require("@/static/asaichi/DSC00042.jpg"),
+        },
+        {
+          src: require("@/static/asaichi/DSC00049.jpg"),
+        },
+        {
+          src: require("@/static/asaichi/DSC00069.jpg"),
+        },
+        {
+          src: require("@/static/asaichi/DSC00075.jpg"),
+        },
+        {
+          src: require("@/static/asaichi/DSC00083.jpg"),
+        },
+        {
+          src: require("@/static/asaichi/DSC00084.jpg"),
+        },
+        {
+          src: require("@/static/asaichi//DSC00175.jpg"),
+        },
+      ],
+    };
+  },
+};
+</script>
 <style scoped>
 h3,
 h4,

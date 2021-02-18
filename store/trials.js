@@ -17,7 +17,7 @@ export const actions = {
     }),
 
 
-    trialadd: firestoreAction((context, { name, address, address2, email, tell, sports, kodomo, japannews, papertype1, school, }) => {
+    trialadd: firestoreAction((context, { name, address, address2, email, tell, sports, kodomo, japannews, papertype1, school, trialdate }) => {
         if (name.trim())
             trialsRef.add
                 ({
@@ -31,6 +31,7 @@ export const actions = {
                     kodomo: kodomo,
                     japannews: japannews,
                     papertype1: papertype1,
+                    trialdate: trialdate,
                     done: false,
                     created: firebase.firestore.FieldValue.serverTimestamp()
 
