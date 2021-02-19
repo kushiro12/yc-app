@@ -220,78 +220,6 @@
               12ヶ月以上のご契約の方はお好きな組み合わせで合計2セットお選びいただけます
             </h4>
 
-            <!-- <v-container>
-              <v-row dense>
-                <v-col md="4">
-                  <v-card
-                    class="mx-auto my-12 justify-space-around"
-                    max-width="300"
-                    @click="toggle"
-                  >
-                    <v-card-actions></v-card-actions>
-
-                    <v-img height="250" :src="osepng" contain></v-img>
-
-                    <v-card-title class="headline">尾瀬の水2L×6本</v-card-title>
-                  </v-card>
-                </v-col>
-                <v-col md="4">
-                  <v-card
-                    class="mx-auto my-12 justify-space-around"
-                    max-width="300"
-                  >
-                    <v-img height="250" :src="paper" contain></v-img>
-
-                    <v-card-title Heading-4
-                      >トイレットペーパー12ロール</v-card-title
-                    >
-                  </v-card>
-                </v-col>
-                <v-col md="4">
-                  <v-card
-                    class="mx-auto my-12 justify-space-around"
-                    max-width="300"
-                  >
-                    <v-img height="250" :src="senzai" contain></v-img>
-
-                    <v-card-title class="headline">液体洗剤</v-card-title>
-                  </v-card>
-                </v-col>
-                <v-col md="4">
-                  <v-card
-                    class="mx-auto my-12 justify-space-around"
-                    max-width="300"
-                  >
-                    <v-img height="250" :src="mirin" contain></v-img>
-
-                    <v-card-title class="headline">みりん 1.8L</v-card-title>
-                  </v-card>
-                </v-col>
-                <v-col md="4">
-                  <v-card
-                    class="mx-auto my-12 justify-space-around"
-                    max-width="300"
-                  >
-                    <v-img height="250" :src="soy" contain></v-img>
-
-                    <v-card-title class="headline"
-                      >上級本醸造醤油 1.8L</v-card-title
-                    >
-                  </v-card>
-                </v-col>
-                <v-col md="4">
-                  <v-card
-                    class="mx-auto my-12 justify-space-around"
-                    max-width="300"
-                  >
-                    <v-img height="250" :src="oil" contain></v-img>
-
-                    <v-card-title class="headline">サラダ油 1.8L</v-card-title>
-                  </v-card>
-                </v-col>
-              </v-row>
-            </v-container> -->
-
             <v-card>
               <v-container>
                 <v-row dense>
@@ -301,6 +229,7 @@
                         <div class="justify-space-between">
                           <div>
                             <v-img
+                              :lazy-src="item.src"
                               :src="item.src"
                               max-height="200"
                               mx-auto

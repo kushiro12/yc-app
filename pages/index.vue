@@ -34,6 +34,16 @@
             <v-card class="mt-5">
               <v-timeline dense>
                 <v-timeline-item
+                  ><n-link to="/newcontruct"
+                    >2/19 新聞を購読したい方ページの更新を行いました</n-link
+                  >
+                </v-timeline-item>
+                <v-timeline-item
+                  ><n-link to="/form"
+                    >2/19 継続購読ページの更新を行いました</n-link
+                  >
+                </v-timeline-item>
+                <v-timeline-item
                   ><n-link to="/">2/18 トップページの更新を行いました</n-link>
                 </v-timeline-item>
                 <v-timeline-item

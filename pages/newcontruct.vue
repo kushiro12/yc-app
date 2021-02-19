@@ -213,18 +213,6 @@
             </v-container>
           </div>
 
-          <!-- <div>
-            <h3 class="sub-title">特典プレゼント</h3>
-            <v-container id="dropdown-example-1">
-              <v-overflow-btn
-                v-model="precent"
-                class="my-2"
-                :items="dropdown_font"
-                label="いずれかお一つお選びいただけます"
-                target="#dropdown-example-1"
-              ></v-overflow-btn>
-            </v-container>
-          </div> -->
           <div>
             <h3 class="sub-title">特典プレゼント</h3>
             <h4>
