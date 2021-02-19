@@ -122,11 +122,6 @@ export default {
       { icon: "money", text: "日曜朝市開催中！", link: "/asaichi" },
       { icon: "mdi-cart-outline", text: "美味しいお米の通販", link: "/rice" },
       {
-        icon: "mdi-calendar-month-outline",
-        text: "お試し購読",
-        link: "/trial",
-      },
-      {
         icon: "mdi-cart-outline",
         text: "アクアクララのご注文",
         link: "/aquawater",

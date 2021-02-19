@@ -17,7 +17,7 @@ export const actions = {
     }),
 
 
-    add: firestoreAction((context, { name, address, address2, email, tell, precent, sports, kodomo, japannews, papertype1, papertype2, year, month, school, payment }) => {
+    add: firestoreAction((context, { name, address, address2, email, tell, precent, precent2, sports, kodomo, japannews, papertype1, papertype2, year, month, school, payment, }) => {
         if (name.trim())
             usersRef.add
                 ({
@@ -27,6 +27,7 @@ export const actions = {
                     email: email,
                     tell: tell,
                     precent: precent,
+                    precent2: precent2,
                     sports: sports,
                     school: school,
                     kodomo: kodomo,
@@ -36,6 +37,7 @@ export const actions = {
                     payment: payment,
                     year: year,
                     month: month,
+                    deleted: false,
                     done: false,
                     created: firebase.firestore.FieldValue.serverTimestamp()
 

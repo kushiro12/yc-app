@@ -17,7 +17,7 @@ export const actions = {
     }),
 
 
-    pauseadd: firestoreAction((context, { name, address, address2, tell, email, pausesdate, pausewater, pausentity, pausetime }) => {
+    pauseadd: firestoreAction((context, { name, address, address2, tell, email, pausesdate, pausewater, pausentity, pausetime, deleted }) => {
         if (name.trim())
             pausesRef.add
                 ({

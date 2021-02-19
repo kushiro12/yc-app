@@ -17,7 +17,7 @@ export const actions = {
     }),
 
 
-    aquaadd: firestoreAction((context, { name, address, address2, tell, email, aquasdate, aquawater, aquantity, aquatime }) => {
+    aquaadd: firestoreAction((context, { name, address, address2, tell, email, aquasdate, aquawater, aquantity, aquatime, }) => {
         if (name.trim())
             aquasRef.add
                 ({

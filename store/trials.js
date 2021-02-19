@@ -33,6 +33,7 @@ export const actions = {
                     papertype1: papertype1,
                     trialdate: trialdate,
                     done: false,
+                    deleted: false,
                     created: firebase.firestore.FieldValue.serverTimestamp()
 
                 })

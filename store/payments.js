@@ -17,7 +17,7 @@ export const actions = {
     }),
 
 
-    paymentadd: firestoreAction((context, { name, address, address2, tell, payment, email }) => {
+    paymentadd: firestoreAction((context, { name, address, address2, tell, payment, email, deleted }) => {
         if (name.trim())
             paymentsRef.add
                 ({
@@ -28,6 +28,7 @@ export const actions = {
                     email: email,
                     payment: payment,
                     done: false,
+                    deleted: false,
                     created: firebase.firestore.FieldValue.serverTimestamp(),
 
 

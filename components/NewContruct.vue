@@ -118,6 +118,12 @@
                           label="特典"
                         ></v-text-field>
                       </v-col>
+                      <v-col cols="6">
+                        <v-text-field
+                          v-model="newcontruct.precent2"
+                          label="特典"
+                        ></v-text-field>
+                      </v-col>
                     </v-row>
                   </v-container>
                 </v-card-text>

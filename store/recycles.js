@@ -28,6 +28,7 @@ export const actions = {
                     tell: tell,
                     created: firebase.firestore.FieldValue.serverTimestamp(),
                     done: false,
+                    deleted: false,
                     recyclesdate: recyclesdate
 
 

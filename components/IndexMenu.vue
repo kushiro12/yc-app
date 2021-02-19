@@ -122,7 +122,7 @@ export default {
         color: "#2151a7",
         title: "日曜朝市開催中！",
         subtitle: "",
-        link: "/trial",
+        link: "/asaichi",
       },
     ],
   }),
