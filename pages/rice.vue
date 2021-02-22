@@ -17,7 +17,7 @@
         <div class="logo-coupon">
           <v-layout justify-center>
             <v-flex xs10 md8>
-              <img src="~/static/images/rice.png" />
+              <img src="~/static/images/rice-1.jpg" />
             </v-flex>
           </v-layout>
         </div>

@@ -3,7 +3,7 @@
     <div>
       <v-card color="red" dark>
         <v-card-title>
-          新型コロナウイルスの影響で２月の読売日曜朝市は開催中止となりました
+          新型コロナウイルスの影響で3月の読売日曜朝市は開催未定です。
         </v-card-title>
       </v-card>
       <div class="box17">
@@ -25,7 +25,12 @@
           class="d-flex child-flex"
           cols="4"
         >
-          <v-img :src="asaichipng.src" aspect-ratio="1" class="grey lighten-2">
+          <v-img
+            :lazy-src="asaichipng.src"
+            :src="asaichipng.src"
+            aspect-ratio="1"
+            class="grey lighten-2"
+          >
           </v-img>
         </v-col>
       </v-row>

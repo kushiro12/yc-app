@@ -228,6 +228,7 @@
                         <div class="justify-space-between">
                           <div>
                             <v-img
+                              :lazy-src="item.src"
                               :src="item.src"
                               max-height="200"
                               mx-auto
