@@ -140,7 +140,7 @@ export default {
       },
 
       { text: "名前", value: "name" },
-      { text: "停止期間", value: "dateRangeText" },
+
       { text: "電話番号", value: "tell" },
       { text: "E-Mail", value: "email" },
       { text: "申込日", value: "created" },

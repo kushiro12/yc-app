@@ -9,7 +9,7 @@
       >
         <template v-slot:top>
           <v-toolbar flat color="white">
-            <h2 justify="center">配達一時停止</h2>
+            <h2 justify="center">お米注文</h2>
 
             <v-dialog v-model="dialog" max-width="700px">
               <v-card>
@@ -134,7 +134,7 @@ export default {
       },
 
       { text: "名前", value: "name" },
-      { text: "停止期間", value: "dateRangeText" },
+
       { text: "電話番号", value: "tell" },
       { text: "E-Mail", value: "email" },
       { text: "申込日", value: "created" },

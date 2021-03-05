@@ -40,12 +40,6 @@ export default {
   data: () => ({
     items: [
       {
-        color: "#10b901",
-        title: "LINE友だち登録でジャイアンツのポスター(非売品)をプレゼント！",
-        subtitle: "友だち登録はこちら",
-      },
-
-      {
         color: "#2151a7",
         title: "新聞を購読したい方",
         subtitle: "新たなご購読はこちら",

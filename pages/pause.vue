@@ -117,6 +117,7 @@
                 <v-col cols="12" sm="6">
                   <v-date-picker
                     no-title
+                    color="light-blue darken-2"
                     v-model="dates"
                     range
                     locale="jp-ja"
