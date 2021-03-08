@@ -75,6 +75,23 @@
                 </p>
               </ValidationProvider>
             </v-col>
+            <v-col cols="12">
+              <ValidationProvider
+                v-slot="{ errors }"
+                name="メールアドレス"
+                rules="required|email"
+              >
+                <v-text-field
+                  class="email"
+                  label="メールアドレス(必須)"
+                  placeholder="your@email"
+                  v-model="email"
+                ></v-text-field>
+                <p v-show="errors.length" class="error_message">
+                  {{ errors[0] }}
+                </p>
+              </ValidationProvider>
+            </v-col>
 
             <v-container id="dropdown-example-1">
               <ValidationProvider
@@ -172,6 +189,7 @@ export default {
         address: this.address,
         address2: this.address2,
         tell: this.tell,
+        email: this.email,
 
         desiredstime: this.desiredstime,
         desiredsdate: this.desiredsdate,

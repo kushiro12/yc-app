@@ -120,8 +120,8 @@
                 <v-checkbox
                   v-model="kodomo"
                   class="mx-2"
-                  value="読売KODOMOE新聞 550円"
-                  label="読売KODOMOE新聞 550円"
+                  value="読売KODOMO新聞 550円"
+                  label="読売KODOMO新聞 550円"
                 ></v-checkbox>
                 <v-checkbox
                   v-model="school"

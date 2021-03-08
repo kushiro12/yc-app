@@ -112,6 +112,7 @@
                   :error-messages="errors"
                   label="お選びください"
                   target="#dropdown-example-1"
+                  item-value="読売新聞 4400円"
                 ></v-overflow-btn>
               </ValidationProvider>
             </v-container>
@@ -120,8 +121,8 @@
                 <v-checkbox
                   v-model="kodomo"
                   class="mx-2"
-                  value="読売KODOMOE新聞 550円"
-                  label="読売KODOMOE新聞 550円"
+                  value="読売KODOMO新聞 550円"
+                  label="読売KODOMO新聞 550円"
                 ></v-checkbox>
                 <v-checkbox
                   v-model="school"
@@ -177,7 +178,7 @@
                   class="my-2"
                   :items="dropdown_year"
                   :error-messages="errors"
-                  label="2021年(必須)"
+                  label="2020年(必須)"
                   target="#dropdown-example-1"
                 ></v-overflow-btn>
               </ValidationProvider>
@@ -362,7 +363,7 @@ export default {
         "その他(以下からお選びください)",
       ],
       dropdown_font3: ["4ヶ月契約", "8ヶ月契約", "12ヶ月契約", "24ヶ月契約"],
-      dropdown_year: ["2021年", "2022年"],
+      dropdown_year: ["2020年", "2021年"],
       dropdown_payment: [
         "銀行振替",
         "ゆうちょ銀行振替",

@@ -19,13 +19,13 @@
 
                   <v-card-subtitle
                     v-text="item.subtitle"
-                    class="title font-weight-medium"
+                    class="font-weight-medium"
                   ></v-card-subtitle>
                 </div>
 
-                <v-avatar class="ma-3" size="90">
+                <!-- <v-avatar class="ma-3" size="90">
                   <v-img :src="item.src"></v-img>
-                </v-avatar>
+                </v-avatar> -->
               </div>
             </v-card>
           </v-col>
@@ -115,7 +115,7 @@ export default {
       {
         color: "#2151a7",
         title: "日曜朝市開催中！",
-        subtitle: "",
+        subtitle: "日曜朝市についてはこちら",
         link: "/asaichi",
       },
     ],

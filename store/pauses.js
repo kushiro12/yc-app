@@ -17,7 +17,7 @@ export const actions = {
     }),
 
 
-    pauseadd: firestoreAction((context, { name, address, address2, tell, email, pausesdate, pausewater, pausentity, pausetime, deleted }) => {
+    pauseadd: firestoreAction((context, { name, address, address2, tell, email, dateRangeText, leave }) => {
         if (name.trim())
             pausesRef.add
                 ({
@@ -29,10 +29,9 @@ export const actions = {
                     created: firebase.firestore.FieldValue.serverTimestamp(),
                     done: false,
                     deleted: false,
-                    pausesdate: pausesdate,
-                    pausewater: pausewater,
-                    pausentity: pausentity,
-                    pausetime: pausetime,
+                    leave: leave,
+                    dateRangeText: dateRangeText,
+
 
 
 

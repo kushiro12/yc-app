@@ -17,7 +17,7 @@ export const actions = {
     }),
 
 
-    desiredadd: firestoreAction((context, { name, address, address2, tell, desiredsdate, desiredstime, deleted }) => {
+    desiredadd: firestoreAction((context, { name, address, address2, tell, email, desiredsdate, desiredstime, deleted }) => {
         if (name.trim())
             desiredsRef.add
                 ({
@@ -25,6 +25,7 @@ export const actions = {
                     address: address,
                     address2: address2,
                     tell: tell,
+                    email: email,
                     created: firebase.firestore.FieldValue.serverTimestamp(),
                     done: false,
                     desiredsdate: desiredsdate,

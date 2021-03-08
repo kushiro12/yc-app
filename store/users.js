@@ -39,6 +39,8 @@ export const actions = {
                     month: month,
                     deleted: false,
                     done: false,
+
+
                     created: firebase.firestore.FieldValue.serverTimestamp()
 
                 })
